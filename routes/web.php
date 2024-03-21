@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContaController;
 use App\Http\Controllers\SendEmailContaController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,29 +17,24 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-/*
+
 Route::get('/', function () {
     return view('welcome');
 });
-*/
 
+Auth::routes();
 
-Route::group(['middleware' => 'guest'], function()
-{
-    Route::get('/register', [AuthController::class, 'register'])->name('register');
-    Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
-    Route::get('/login', [AuthController::class, 'login'])->name('login');
-    Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
-});
+Route::get('/home', [HomeController::class,'index'])->name('home');
 
-Route::group(['middleware' => 'auth'], function()
-{
-    Route::get('/home', [HomeController::class, 'index']);
-    Route::delete('/logout', [HomeController::class, 'logout'])->name('logout');
-});
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
 
 // CONTAS
-Route::get('/', [ContaController::class, 'index'])->name('conta.index');
+Route::get('/contas/index', [ContaController::class, 'index'])->name('conta.index');
 Route::get('/create-conta', [ContaController::class, 'create'])->name('conta.create');
 Route::post('/store-conta', [ContaController::class, 'store'])->name('conta.store');
 Route::get('/show-conta/{conta}', [ContaController::class, 'show'])->name('conta.show');

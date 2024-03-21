@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('content')
+@section('main-content')
     <div class="card mt-4 mb-4 border-light shadow">
         <div class="card-header d-flex justify-content-between">
             <span>Editar Conta</span>

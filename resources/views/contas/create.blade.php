@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('content')
+@section('main-content')
     <div class="card mt-4 mb-4 border-light shadow">
         <div class="card-header d-flex justify-content-between">
             <span>Cadastrar Conta</span>
@@ -37,7 +37,7 @@
 
                 <div class="col-md-4 col-sm-12">
                     <label for="situacao_conta_id" class="form-label">Situação da Conta</label>
-                    <select name="situacao_conta_id" id="situacao_conta_id" class="form-select select2">
+                    <select name="situacao_conta_id" id="situacao_conta_id" class="form-control form-select select2">
                         <option value="">Selecione</option>
                         @forelse ($situacoesContas as $situacaoConta)
                             <option value="{{ $situacaoConta->id }}"

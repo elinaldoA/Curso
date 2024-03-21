@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('content')
+@section('main-content')
     <div class="card mt-4 mb-4 border-light shadow">
         <div class="card-header d-flex justify-content-between">
             <span>Visualizar Conta</span>
@@ -43,7 +43,7 @@
                 <dd class="col-sm-9">{{ \Carbon\Carbon::parse($conta->updated_at)->tz('America/Sao_Paulo')->format('d/m/Y H:i:s') }}</dd>
 
             </dl>
-            
+
         </div>
     </div>
 @endsection

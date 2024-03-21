@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('content')
+@section('main-content')
     <div class="card mt-3 mb-4 border-light shadow">
         <div class="card-header d-flex justify-content-between">
             <span>Pesquisar</span>
@@ -64,7 +64,7 @@
         <x-alert />
 
         <div class="card-body">
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
