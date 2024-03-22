@@ -143,7 +143,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Elinaldo Agostinho 2021</span>
+                    <span>Copyright &copy; Elinaldo Agostinho 2024</span>
                 </div>
             </div>
         </footer>

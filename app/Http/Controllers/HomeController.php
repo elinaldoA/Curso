@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -24,13 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::count();
+        $contas = DB::table('contas')->get();
+        $categorias = DB::table('categorias')->get();
 
-        $widget = [
-            'users' => $users,
-            //...
-        ];
-
-        return view('home', compact('widget'));
+        return view('home', compact('contas','categorias'));
     }
 }

@@ -22,6 +22,9 @@
 
                 <dt class="col-sm-3">Nome</dt>
                 <dd class="col-sm-9">{{ $conta->nome }}</dd>
+                
+                <dt class="col-sm-3">Categoria</dt>
+                <dd class="col-sm-9">{{ $conta->categoria->descricao }}</dd>
 
                 <dt class="col-sm-3">Valor</dt>
                 <dd class="col-sm-9">{{ 'R$ ' . number_format($conta->valor, 2, ',', '.') }}</dd>

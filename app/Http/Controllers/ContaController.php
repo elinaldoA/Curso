@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContaRequest;
+use App\Models\Categoria;
 use App\Models\Conta;
 use App\Models\SituacaoConta;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -56,9 +57,12 @@ class ContaController extends Controller
     {
         // Recuperar do banco de dados as situações
         $situacoesContas = SituacaoConta::orderBy('nome', 'asc')->get();
+        // Recuperar do banco de dados as categorias
+        $categorias = Categoria::orderBy('descricao', 'asc')->get();
 
         // Carregar a VIEW
-        return view('contas.create', [
+        return view('contas.create', [ 
+            'categorias' => $categorias,
             'situacoesContas' => $situacoesContas,
         ]);
     }
@@ -78,6 +82,7 @@ class ContaController extends Controller
                 'valor' => str_replace(',', '.', str_replace('.', '', $request->valor)),
                 'vencimento' => $request->vencimento,
                 'situacao_conta_id' => $request->situacao_conta_id,
+                'categoria_id' => $request->categoria_id,
             ]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
@@ -97,10 +102,13 @@ class ContaController extends Controller
     {
         // Recuperar do banco de dados as situações
         $situacoesContas = SituacaoConta::orderBy('nome', 'asc')->get();
+        // Recuperar do banco de dados as categorias
+        $categorias = Categoria::orderBy('descricao', 'asc')->get();
 
         // Carregar a VIEW
         return view('contas.edit', [
             'conta' => $conta,
+            'categorias' => $categorias,
             'situacoesContas' => $situacoesContas,
         ]);
     }
@@ -119,6 +127,7 @@ class ContaController extends Controller
                 'valor' => str_replace(',', '.', str_replace('.', '', $request->valor)),
                 'vencimento' => $request->vencimento,
                 'situacao_conta_id' => $request->situacao_conta_id,
+                'categoria_id' => $request->categoria_id,
             ]);
 
             // Salvar log
@@ -234,7 +243,7 @@ class ContaController extends Controller
         $arquivoAberto = fopen($csvNomeArquivo, 'w');
 
         // Criar o cabeçalho do Excel - Usar a função mb_convert_encoding para converter carateres especiais
-        $cabecalho = ['id', 'Nome', 'Vencimento', mb_convert_encoding('Situação', 'ISO-8859-1', 'UTF-8'), 'Valor'];
+        $cabecalho = ['id', 'Nome', 'Vencimento', mb_convert_encoding('Situação', 'ISO-8859-1', 'UTF-8'), mb_convert_encoding('Categoria', 'ISO-8859-1', 'UTF-8'), 'Valor'];
 
         // Escrever o cabeçalho no arquivo
         fputcsv($arquivoAberto, $cabecalho, ';');
@@ -248,6 +257,7 @@ class ContaController extends Controller
                 'nome' => mb_convert_encoding($conta->nome, 'ISO-8859-1', 'UTF-8'),
                 'vencimento' => $conta->vencimento,
                 'situacao' => mb_convert_encoding($conta->situacaoConta->nome, 'ISO-8859-1', 'UTF-8'),
+                'categoria' => mb_convert_encoding($conta->categoria->descricao, 'ISO-8859-1', 'UTF-8'),
                 'valor' => number_format($conta->valor, 2, ',', '.'),
             ];
 
@@ -256,7 +266,7 @@ class ContaController extends Controller
         }
 
         // Criar o rodapé do Excel
-        $rodape = ['', '', '', '', number_format($totalValor, 2, ',', '.')];
+        $rodape = ['', '', '', '', '', number_format($totalValor, 2, ',', '.')];
 
         // Escrever o conteúdo no arquivo
         fputcsv($arquivoAberto, $rodape, ';');
@@ -265,7 +275,7 @@ class ContaController extends Controller
         fclose($arquivoAberto);
 
         // Realizar o download do arquivo
-        return response()->download($csvNomeArquivo, 'relatorio_contas_celke_' . Str::ulid() . '.csv');
+        return response()->download($csvNomeArquivo, 'relatorio_gestor_contas_' . Str::ulid() . '.csv');
     }
 
     // Gerar Word
@@ -333,7 +343,7 @@ class ContaController extends Controller
         $table->addCell(2000, $borderStyle)->addText(number_format($totalValor, 2, ',', '.'));
 
         // Criar o nome do arquivo
-        $filename = 'relatorio_contas_celke.docx';
+        $filename = 'relatorio_gestor_contas.docx';
 
         // Obter o caminho completo onde o arquivo gerado pelo PhpWord será salvo
         $savePath = storage_path($filename);

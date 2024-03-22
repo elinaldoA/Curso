@@ -7,5 +7,5 @@ Contas a pagar:
 @endforeach
 
 
-E-mail enviado pelo sistema.
+E-mail enviado pelo sistema Gestor de contas.
 

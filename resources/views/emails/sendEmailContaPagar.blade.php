@@ -12,5 +12,5 @@
     @endforeach
 
     <br><br>
-    <p>E-mail enviado pelo sistema.</p>
+    <p>E-mail enviado pelo sistema Gestor de contas.</p>
 @endsection
