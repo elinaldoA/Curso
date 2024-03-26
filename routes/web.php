@@ -25,7 +25,6 @@ Route::get('/', function () {
 
 Auth::routes();
 //Adminstrador
-Route::prefix('admin')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
@@ -68,7 +67,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/gerar-word-conta', [ContaController::class, 'gerarWord'])->name('conta.gerar-word');
 
     Route::get('/send-email-pendente-conta', [SendEmailContaController::class, 'sendEmailPendenteConta'])->name('conta.send-email-pendente');
-});
 //Clientes
 Route::prefix('cliente')->group(function () {
     Route::get('login', [App\Http\Controllers\Clientes\AuthCliente\LoginController::class, 'showLoginForm'])->name('cliente.login');
