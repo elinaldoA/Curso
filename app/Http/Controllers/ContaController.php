@@ -19,7 +19,6 @@ class ContaController extends Controller
     // Listar as contas
     public function index(Request $request)
     {
-
         // Recuperar os registros do banco dados
         $contas = Conta::when($request->has('nome'), function ($whenQuery) use ($request) {
             $whenQuery->where('nome', 'like', '%' . $request->nome . '%');
@@ -61,7 +60,7 @@ class ContaController extends Controller
         $categorias = Categoria::orderBy('descricao', 'asc')->get();
 
         // Carregar a VIEW
-        return view('contas.create', [ 
+        return view('contas.create', [
             'categorias' => $categorias,
             'situacoesContas' => $situacoesContas,
         ]);
@@ -83,6 +82,7 @@ class ContaController extends Controller
                 'vencimento' => $request->vencimento,
                 'situacao_conta_id' => $request->situacao_conta_id,
                 'categoria_id' => $request->categoria_id,
+                'user_id' => $request->user_id,
             ]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso

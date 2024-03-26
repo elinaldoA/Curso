@@ -70,10 +70,10 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        {{-- <a href="{{ route('login') }}">Login</a> --}}
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Registrar</a>
+                        @if (Route::has('cliente.register'))
+                            {{-- <a href="{{ route('cliente.register') }}">Registrar</a> --}}
                         @endif
                     @endauth
                 </div>
@@ -86,6 +86,7 @@
 
                 <div class="links">
                     <a href="{{ route('login') }}">{{ __('Administrador') }}</a>
+                    <a href="{{ route('cliente.login') }}">{{ __('Cliente') }}</a>
                 </div>
             </div>
         </div>
