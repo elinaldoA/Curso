@@ -43,7 +43,7 @@ return [
 
         'admin' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'admin',
         ],
         'cliente' => [
             'driver' => 'session',
@@ -109,7 +109,13 @@ return [
     */
 
     'passwords' => [
-        'users' => [
+        'admins' => [
+            'provider' => 'users',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'clientes' => [
             'provider' => 'users',
             'table' => 'password_reset_tokens',
             'expire' => 60,

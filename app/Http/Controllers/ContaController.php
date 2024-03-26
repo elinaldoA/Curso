@@ -10,12 +10,17 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use PhpOffice\PhpWord\PhpWord;
 
 class ContaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     // Listar as contas
     public function index(Request $request)
     {
@@ -128,6 +133,7 @@ class ContaController extends Controller
                 'vencimento' => $request->vencimento,
                 'situacao_conta_id' => $request->situacao_conta_id,
                 'categoria_id' => $request->categoria_id,
+                'cliente_id' => $request->input('cliente_id'),
             ]);
 
             // Salvar log

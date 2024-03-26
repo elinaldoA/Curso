@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Clientes\AuthCliente;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
+use Illuminate\Http\Request;
 
 class ConfirmPasswordController extends Controller
 {
@@ -35,6 +36,17 @@ class ConfirmPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:condomino');
+    }
+
+    /**
+     * Display the password confirmation view.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showConfirmForm()
+    {
+        return view('cliente.auth.passwords.confirm');
     }
 }
+

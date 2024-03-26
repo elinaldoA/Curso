@@ -32,7 +32,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard')}}">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-coins"></i>
             </div>
@@ -44,7 +44,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('home') }}">
+            <a class="nav-link" href="{{ route('dashboard') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>{{ __('Dashboard') }}</span></a>
         </li>
@@ -59,7 +59,7 @@
 
         <!-- Nav Item - Profile -->
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('profile') }}">
+            <a class="nav-link" href="{{ route('profile-cliente') }}">
                 <i class="fas fa-fw fa-user"></i>
                 <span>{{ __('Perfil') }}</span>
             </a>
@@ -67,7 +67,7 @@
 
         <!-- Nav Item - About -->
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('conta.index') }}">
+            <a class="nav-link" href="{{ route('conta.cliente.index') }}">
                 <i class="fas fa-fw fa-coins"></i>
                 <span>{{ __('Gastos') }}</span>
             </a>
@@ -111,12 +111,12 @@
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="{{ route('profile') }}">
+                            <a class="dropdown-item" href="{{ route('profile-cliente') }}">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 {{ __('Perfil') }}
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <a class="dropdown-item" href="{{route('cliente.logout')}}" data-toggle="modal" data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 {{ __('Sair') }}
                             </a>

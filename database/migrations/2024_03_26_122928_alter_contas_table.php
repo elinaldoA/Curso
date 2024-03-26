@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::table('contas', function (Blueprint $table) {
             $table->foreignId('categoria_id')->default(1)->after('situacao_conta_id')->constrained('categorias');
-            $table->foreignId('user_id')->default(1)->after('categoria_id')->constrained('users');
         });
     }
 
@@ -24,7 +23,6 @@ return new class extends Migration
     {
         Schema::create('contas', function (Blueprint $table) {
             $table->dropColumn('categoria_id');
-            $table->dropColumn('user_id');
         });
     }
 };

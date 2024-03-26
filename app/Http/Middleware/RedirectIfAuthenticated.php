@@ -17,19 +17,22 @@ class RedirectIfAuthenticated
      * @param  string|null  $guard
      * @return mixed
      */
-
     public function handle($request, Closure $next, $guard = null)
-        {
-            if ($guard == "admin" && Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+    {
+        if (Auth::guard($guard)->check()) {
+            switch ($guard) {
+                case 'admin':
+                    return redirect(app()->getLocale() . RouteServiceProvider::HOME_ADM);
+                    break;
+                case 'cliente':
+                    return redirect(app()->getLocale() . RouteServiceProvider::HOME_CLIENTE);
+                    break;
+                default:
+                    return redirect(app()->getLocale() . RouteServiceProvider::HOME_ADM);
+                    break;
             }
-            if ($guard == "cliente" && Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME_CLIENTE);
-            }
-            if (Auth::guard($guard)->check()) {
-                return redirect('/home');
-            }
-
-            return $next($request);
         }
+
+        return $next($request);
+    }
 }

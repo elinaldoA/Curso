@@ -11,9 +11,8 @@ class ClienteRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -22,7 +21,20 @@ class ClienteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'active' => 'required',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return[
+            'name.required' => 'Campo nome é obrigatório!',
+            'last_name.required' => 'Campo sobrenome é obrigatório!',
+            'email.required' => 'Campo e-mail é obrigatório!',
+            'active.required' => 'Campo situação do cliente é obrigatório!',
         ];
     }
 }
