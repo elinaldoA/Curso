@@ -45,12 +45,6 @@
             <span>
                 <a href="{{ route('conta.cliente.create') }}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i></a>
 
-                <a href="{{ route('conta.send-email-pendente') }}" class="btn btn-info btn-sm btnSendEmail">
-                    <i class="fa fa-envelope"></i>
-                </a>
-                {{-- <a href="{{ route('conta.cliente.gerar-pdf') }}" class="btn btn-warning btn-sm">Gerar PDF</a> --}}
-                {{-- {{ dd(request()->getQueryString()) }} --}}
-
                 <a href="{{ url('cliente/gerar-pdf-conta?' . request()->getQueryString()) }}" class="btn btn-warning btn-sm"><i class="fa fa-file-pdf-o"></i></a>
 
                 <a href="{{ url('cliente/gerar-csv-conta?' . request()->getQueryString()) }}" class="btn btn-success btn-sm"><i class="fa fa-file-excel-o"></i></a>
