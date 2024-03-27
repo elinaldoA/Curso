@@ -37,7 +37,7 @@ class ContaController extends Controller
             })
             ->with('situacaoConta')
             ->orderByDesc('created_at')
-            ->paginate(10)
+            ->paginate(15)
             ->withQueryString();
 
         // Carregar a VIEW
