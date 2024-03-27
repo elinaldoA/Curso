@@ -11,7 +11,10 @@ use Illuminate\Support\Facades\Mail;
 
 class SendEmailContaController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     // Enviar e-mail contas pendentes
     public function sendEmailPendenteConta()
     {

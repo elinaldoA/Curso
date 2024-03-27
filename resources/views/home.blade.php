@@ -37,7 +37,7 @@
                                         @endif
                                     @endif
                                 @endforeach
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
                                     {{ 'R$ ' . number_format($total, 2, ',', '.') }}
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                                     $ano = date('Y');
                                 @endphp
                                 @foreach ($contas as $conta)
-                                    @if (date('Y', strtotime($conta->created_at)) === $ano)
+                                    @if (date('Y', strtotime($conta->created_at)) == $ano)
                                     @if(Auth::user()->id == $conta->user_id)
                                         <?php $total += $conta->valor; ?>
                                     @endif
@@ -193,7 +193,7 @@
             $saude = 0;
         @endphp
         @foreach ($contas as $conta)
-        
+
         @if(Auth::user()->id == $conta->user_id)
             @if ($conta->categoria_id == 1)
                 <script>

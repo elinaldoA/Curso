@@ -19,26 +19,37 @@
                 @csrf
                 @method('PUT')
 
-                <div class="col-md-12 col-sm-12">
+                <div class="col-md-6 col-sm-12">
                     <label for="nome" class="form-label">Nome</label>
                     <input type="text" name="name" class="form-control" id="name" placeholder="Nome do cliente"
                         value="{{ old('name', $cliente->name) }}">
                 </div>
 
-                <div class="col-md-4 col-sm-12">
-                    <label for="valor" class="form-label">Valor</label>
-                    <input type="text" name="valor" class="form-control" id="valor" placeholder="Valor da cliente"
-                        value="{{ old('valor', isset($cliente->valor) ? number_format($cliente->valor, '2', ',', '.') : '') }}">
+                <div class="col-md-6 col-sm-12">
+                    <label for="nome" class="form-label">Sobrenome</label>
+                    <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Sobrenome"
+                        value="{{ old('last_name', $cliente->last_name) }}">
                 </div>
 
-                <div class="col-md-4 col-sm-12">
+                <div class="col-md-6 col-sm-12">
+                    <label for="nome" class="form-label">E-mail</label>
+                    <input type="text" name="email" class="form-control" id="email" placeholder="E-mail"
+                        value="{{ old('email', $cliente->email) }}">
+                </div>
+
+                <div class="col-md-6 col-sm-12" hidden="true">
+                    <label for="password" class="form-label">Senha</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="senha"
+                        value="{{ old('password', $cliente->password) }}">
+                </div>
+
+                <div class="col-md-6 col-sm-12">
                     <label for="active" class="form-label">Situação da cliente</label>
                     <select name="active" id="active" class="form-select select2">
-                        <option value="">Selecione</option>
-                        <option value="{{ $cliente->active }}"
-                            {{ old('active', $cliente->active) == $cliente->id ? 'selected' : '' }}>
-                            Ativo
-                        </option>
+                        @if($cliente->active == '1')
+                        <option value="{{ old('active', $cliente->active) }}" {{ old('active', $cliente->active) == $cliente->active ? 'selected' : '' }}>Ativo</option>
+                        @else
+                        <option value="{{ old('active', $cliente->active) }}" {{ old('active', $cliente->active) == $cliente->active ? 'selected' : '' }}>Inativo</option>@endif
                     </select>
                 </div>
 

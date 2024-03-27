@@ -34,14 +34,14 @@ class CategoriaSeeder extends Seeder
                 'descricao' => 'Financiamento',
             ]);
         }
-        if(!Categoria::where('descricao', 'Seguro')->first()){
+        if(!Categoria::where('descricao', 'Veiculo')->first()){
             Categoria::create([
-                'descricao' => 'Seguro',
+                'descricao' => 'Veiculo',
             ]);
         }
-        if(!Categoria::where('descricao', 'Streaming')->first()){
+        if(!Categoria::where('descricao', 'Moradia')->first()){
             Categoria::create([
-                'descricao' => 'Streaming',
+                'descricao' => 'Moradia',
             ]);
         }
         if(!Categoria::where('descricao', 'Lazer')->first()){
