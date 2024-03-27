@@ -32,7 +32,9 @@
                                 @endphp
                                 @foreach ($contas as $conta)
                                     @if (date('d/m/Y', strtotime($conta->created_at)) == $hoje)
-                                        <?php $total += $conta->valor; ?>
+                                        @if(Auth::user()->id == $conta->cliente_id)
+                                            <?php $total += $conta->valor; ?>
+                                        @endif
                                     @endif
                                 @endforeach
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -59,7 +61,9 @@
                                 @endphp
                                 @foreach ($contas as $conta)
                                     @if (date('m/Y', strtotime($conta->created_at)) == $mes)
+                                    @if(Auth::user()->id == $conta->cliente_id)
                                         <?php $total += $conta->valor; ?>
+                                    @endif
                                     @endif
                                 @endforeach
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -86,7 +90,9 @@
                                 @endphp
                                 @foreach ($contas as $conta)
                                     @if (date('Y', strtotime($conta->created_at)) === $ano)
-                                    <?php $total += $conta->valor; ?>
+                                    @if(Auth::user()->id == $conta->cliente_id)
+                                        <?php $total += $conta->valor; ?>
+                                    @endif
                                     @endif
                                 @endforeach
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -116,8 +122,9 @@
                                 $cancelada = 0;
                             @endphp
                             @foreach ($contas as $conta)
+                            @if(Auth::user()->id == $conta->cliente_id)
                                 @if ($conta->situacao_conta_id == 1)
-                                    <?php $paga += 1; ?>
+                                <?php $paga += 1; ?>
                                 @endif
                                 @if ($conta->situacao_conta_id == 2)
                                     <?php $pendente += 1; ?>
@@ -125,6 +132,7 @@
                                 @if ($conta->situacao_conta_id == 3)
                                     <?php $cancelada += 1; ?>
                                 @endif
+                            @endif
                             @endforeach
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 {{ $paga }}
@@ -185,6 +193,8 @@
             $saude = 0;
         @endphp
         @foreach ($contas as $conta)
+        
+        @if(Auth::user()->id == $conta->cliente_id)
             @if ($conta->categoria_id == 1)
                 <script>
                     function update() {
@@ -336,6 +346,7 @@
                         }
                     }
                 </script>
+                @endif
             @endif
         @endforeach
         <div class="col-lg-12 mb-4">

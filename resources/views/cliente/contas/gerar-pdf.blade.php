@@ -21,21 +21,26 @@
 
         <tbody>
             @forelse ($contas as $conta)
-                <tr>
-                    <td style="border: 1px solid #ccc; border-top: none;">{{ $conta->id }}</td>
-                    <td style="border: 1px solid #ccc; border-top: none;">{{ $conta->nome }}</td>
-                    <td style="border: 1px solid #ccc; border-top: none;">{{ \Carbon\Carbon::parse($conta->vencimento)->tz('America/Sao_Paulo')->format('d/m/Y') }}</td>
-                    <td style="border: 1px solid #ccc; border-top: none;">{{ 'R$ ' . number_format($conta->valor, 2, ',', '.') }}</td>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="4">Nenhuma conta encontrada!</td>
-                </tr>
+                @if (Auth::user()->id == $conta->cliente_id)
+                    <tr>
+                        <td style="border: 1px solid #ccc; border-top: none;">{{ $conta->id }}</td>
+                        <td style="border: 1px solid #ccc; border-top: none;">{{ $conta->nome }}</td>
+                        <td style="border: 1px solid #ccc; border-top: none;">
+                            {{ \Carbon\Carbon::parse($conta->vencimento)->tz('America/Sao_Paulo')->format('d/m/Y') }}
+                        </td>
+                        <td style="border: 1px solid #ccc; border-top: none;">
+                            {{ 'R$ ' . number_format($conta->valor, 2, ',', '.') }}</td>
+                    </tr>
+                @endif
+                @empty
+                    <tr>
+                        <td colspan="4">Nenhuma conta encontrada!</td>
+                    </tr>
             @endforelse
-
             <tr>
                 <td colspan="3" style="border: 1px solid #ccc; border-top: none;">Total</td>
-                <td style="border: 1px solid #ccc; border-top: none;">{{ 'R$ ' . number_format($totalValor, 2, ',', '.') }}</td>
+                <td style="border: 1px solid #ccc; border-top: none;">
+                    {{ 'R$ ' . number_format($totalValor, 2, ',', '.') }}</td>
             </tr>
         </tbody>
 

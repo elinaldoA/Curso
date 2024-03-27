@@ -61,6 +61,12 @@
                         @endforelse
                     </select>
                 </div>
+                <div class="col-md-4 col-sm-12" hidden="true">
+                    <label for="user_id" class="form-label">Usuário da Conta</label>
+                    <select name="user_id" id="user_id" class="form-control form-select">
+                        <option value="{{Auth::user()->id}}">{{Auth::user()->name}}</option>
+                    </select>
+                </div>
 
                 <div class="col-12">
                     <button type="submit" class="btn btn-success btn-sm">Cadastrar</button>

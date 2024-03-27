@@ -5,8 +5,8 @@
         <div class="card-header d-flex justify-content-between">
             <span>Editar Conta</span>
             <span>
-                <a href="{{ route('conta.index') }}" class="btn btn-info btn-sm ">Listar</a>
-                <a href="{{ route('conta.show', ['conta' => $conta->id]) }}" class="btn btn-primary btn-sm">Visualizar</a>
+                <a href="{{ route('conta.cliente.index') }}" class="btn btn-info btn-sm ">Listar</a>
+                <a href="{{ route('conta.cliente.show', ['conta' => $conta->id]) }}" class="btn btn-primary btn-sm">Visualizar</a>
             </span>
         </div>
 
@@ -63,7 +63,12 @@
                         @endforelse
                     </select>
                 </div>
-
+                <div class="col-md-4 col-sm-12" hidden="true">
+                    <label for="cliente_id" class="form-label">Usuário da Conta</label>
+                    <select name="cliente_id" id="cliente_id" class="form-control form-select">
+                        <option value="{{Auth::user()->id}}">{{Auth::user()->name}}</option>
+                    </select>
+                </div>
                 <div class="col-12">
                     <button type="submit" class="btn btn-warning btn-sm">Salvar</button>
                 </div>

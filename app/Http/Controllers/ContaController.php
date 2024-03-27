@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ContaRequest;
 use App\Models\Categoria;
 use App\Models\Conta;
@@ -79,7 +80,6 @@ class ContaController extends Controller
         $request->validated();
 
         try {
-
             // Cadastrar no banco de dados na tabela contas os valores de todos os campos
             $conta = Conta::create([
                 'nome' => $request->nome,
@@ -133,7 +133,7 @@ class ContaController extends Controller
                 'vencimento' => $request->vencimento,
                 'situacao_conta_id' => $request->situacao_conta_id,
                 'categoria_id' => $request->categoria_id,
-                'cliente_id' => $request->input('cliente_id'),
+                'user_id' => $request->user_id,
             ]);
 
             // Salvar log
@@ -183,7 +183,14 @@ class ContaController extends Controller
             ->get();
 
         // Calcular a soma total dos valores
-        $totalValor = $contas->sum('valor');
+        //$totalValor = $contas->sum('valor');
+        $total = 0;
+        foreach ($contas as $conta) {
+            if(Auth::user()->id == $conta->user_id){
+                $total += $conta->valor;
+            }
+            $totalValor = $total;
+        }
 
         // Carregar a string com o HTML/conteúdo e determinar a orientação e o tamanho do arquivo
         $pdf = PDF::loadView('contas.gerar-pdf', [
@@ -240,7 +247,14 @@ class ContaController extends Controller
             ->get();
 
         // Calcular a soma total dos valores
-        $totalValor = $contas->sum('valor');
+        //$totalValor = $contas->sum('valor');
+        $total = 0;
+        foreach ($contas as $conta) {
+            if(Auth::user()->id == $conta->user_id){
+                $total += $conta->valor;
+            }
+            $totalValor = $total;
+        }
 
         // Criar o arquivo temporário
         $csvNomeArquivo = tempnam(sys_get_temp_dir(), 'csv_' . Str::ulid());
@@ -256,6 +270,7 @@ class ContaController extends Controller
 
         // Ler os registros recuperados do banco de dados
         foreach ($contas as $conta) {
+            if(Auth::user()->id == $conta->user_id){
 
             // Criar o array com os dados da linha do Excel
             $contaArray = [
@@ -269,6 +284,8 @@ class ContaController extends Controller
 
             // Escrever o conteúdo no arquivo
             fputcsv($arquivoAberto, $contaArray, ';');
+
+            }
         }
 
         // Criar o rodapé do Excel
@@ -303,8 +320,14 @@ class ContaController extends Controller
             ->get();
 
         // Calcular a soma total dos valores
-        $totalValor = $contas->sum('valor');
-
+        //$totalValor = $contas->sum('valor');
+        $total = 0;
+        foreach ($contas as $conta) {
+            if(Auth::user()->id == $conta->user_id){
+                $total += $conta->valor;
+            }
+            $totalValor = $total;
+        }
         // Criar uma instância do PhpWord
         $phpWord = new PhpWord();
 
@@ -330,7 +353,7 @@ class ContaController extends Controller
 
         // Ler os registros recuperados do banco de dados
         foreach ($contas as $conta) {
-
+            if(Auth::user()->id == $conta->user_id){
             // Adicionar a linha da tabela
             $table->addRow();
             $table->addCell(2000, $borderStyle)->addText($conta->id);
@@ -338,6 +361,7 @@ class ContaController extends Controller
             $table->addCell(2000, $borderStyle)->addText(Carbon::parse($conta->vencimento)->format('d/m/Y'));
             $table->addCell(2000, $borderStyle)->addText($conta->situacaoConta->nome);
             $table->addCell(2000, $borderStyle)->addText(number_format($conta->valor, 2, ',', '.'));
+            }
         }
 
         // Adicionar o total na tabela

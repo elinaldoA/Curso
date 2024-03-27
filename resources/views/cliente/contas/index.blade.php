@@ -48,14 +48,14 @@
                 <a href="{{ route('conta.send-email-pendente') }}" class="btn btn-info btn-sm btnSendEmail">
                     <i class="fa fa-envelope"></i>
                 </a>
-                {{-- <a href="{{ route('conta.gerar-pdf') }}" class="btn btn-warning btn-sm">Gerar PDF</a> --}}
+                {{-- <a href="{{ route('conta.cliente.gerar-pdf') }}" class="btn btn-warning btn-sm">Gerar PDF</a> --}}
                 {{-- {{ dd(request()->getQueryString()) }} --}}
 
-                <a href="{{ url('gerar-pdf-conta?' . request()->getQueryString()) }}" class="btn btn-warning btn-sm"><i class="fa fa-file-pdf-o"></i></a>
+                <a href="{{ url('cliente/gerar-pdf-conta?' . request()->getQueryString()) }}" class="btn btn-warning btn-sm"><i class="fa fa-file-pdf-o"></i></a>
 
-                <a href="{{ url('gerar-csv-conta?' . request()->getQueryString()) }}" class="btn btn-success btn-sm"><i class="fa fa-file-excel-o"></i></a>
+                <a href="{{ url('cliente/gerar-csv-conta?' . request()->getQueryString()) }}" class="btn btn-success btn-sm"><i class="fa fa-file-excel-o"></i></a>
 
-                <a href="{{ url('gerar-word-conta?' . request()->getQueryString()) }}" class="btn btn-primary btn-sm"><i class="fa fa-file-word-o"></i></a>
+                <a href="{{ url('cliente/gerar-word-conta?' . request()->getQueryString()) }}" class="btn btn-primary btn-sm"><i class="fa fa-file-word-o"></i></a>
 
             </span>
         </div>
@@ -67,7 +67,6 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Valor</th>
                         <th scope="col">Vencimento</th>
@@ -76,9 +75,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($contas as $conta)
+                    @forelse($contas as $conta)
+                        @if(Auth::user()->id == $conta->cliente_id)
                         <tr>
-                            <td>{{ $conta->id }}</td>
                             <td>{{ $conta->nome }}</td>
                             <td>{{ 'R$ ' . number_format($conta->valor, 2, ',', '.') }}</td>
                             <td>{{ \Carbon\Carbon::parse($conta->vencimento)->tz('America/Sao_Paulo')->format('d/m/Y') }}
@@ -107,6 +106,7 @@
 
                             </td>
                         </tr>
+                        @endif
                     @empty
                         <h5><span style="color: #f00;">Nenhuma conta encontrada!</span></h5>
                     @endforelse

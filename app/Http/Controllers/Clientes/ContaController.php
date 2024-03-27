@@ -11,6 +11,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use PhpOffice\PhpWord\PhpWord;
@@ -51,6 +52,7 @@ class ContaController extends Controller
     // Detalhes da conta
     public function show(Conta $conta)
     {
+
         // Carregar a VIEW
         return view('cliente.contas.show', ['conta' => $conta]);
     }
@@ -73,17 +75,19 @@ class ContaController extends Controller
     // Cadastrar no banco de dados nova conta
     public function store(ContaRequest $request)
     {
+
         // Validar o formulário
         $request->validated();
 
         try {
-            //Cadastrar no banco de dados na tabela contas os valores de todos os campos
+            // Cadastrar no banco de dados na tabela contas os valores de todos os campos
             $conta = Conta::create([
                 'nome' => $request->nome,
                 'valor' => str_replace(',', '.', str_replace('.', '', $request->valor)),
                 'vencimento' => $request->vencimento,
                 'situacao_conta_id' => $request->situacao_conta_id,
                 'categoria_id' => $request->categoria_id,
+                'cliente_id' => $request->cliente_id,
             ]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
@@ -129,6 +133,7 @@ class ContaController extends Controller
                 'vencimento' => $request->vencimento,
                 'situacao_conta_id' => $request->situacao_conta_id,
                 'categoria_id' => $request->categoria_id,
+                'cliente_id' => $request->cliente_id,
             ]);
 
             // Salvar log
@@ -178,10 +183,17 @@ class ContaController extends Controller
             ->get();
 
         // Calcular a soma total dos valores
-        $totalValor = $contas->sum('valor');
+        //$totalValor = $contas->sum('valor');
+        $total = 0;
+        foreach ($contas as $conta) {
+            if(Auth::user()->id == $conta->cliente_id){
+                $total += $conta->valor;
+            }
+            $totalValor = $total;
+        }
 
         // Carregar a string com o HTML/conteúdo e determinar a orientação e o tamanho do arquivo
-        $pdf = PDF::loadView('contas.gerar-pdf', [
+        $pdf = PDF::loadView('cliente.contas.gerar-pdf', [
             'contas' => $contas,
             'totalValor' => $totalValor
         ])->setPaper('a4', 'portrait');
@@ -235,7 +247,14 @@ class ContaController extends Controller
             ->get();
 
         // Calcular a soma total dos valores
-        $totalValor = $contas->sum('valor');
+        //$totalValor = $contas->sum('valor');
+        $total = 0;
+        foreach ($contas as $conta) {
+            if(Auth::user()->id == $conta->cliente_id){
+                $total += $conta->valor;
+            }
+            $totalValor = $total;
+        }
 
         // Criar o arquivo temporário
         $csvNomeArquivo = tempnam(sys_get_temp_dir(), 'csv_' . Str::ulid());
@@ -251,6 +270,7 @@ class ContaController extends Controller
 
         // Ler os registros recuperados do banco de dados
         foreach ($contas as $conta) {
+            if(Auth::user()->id == $conta->cliente_id){
 
             // Criar o array com os dados da linha do Excel
             $contaArray = [
@@ -264,6 +284,8 @@ class ContaController extends Controller
 
             // Escrever o conteúdo no arquivo
             fputcsv($arquivoAberto, $contaArray, ';');
+
+            }
         }
 
         // Criar o rodapé do Excel
@@ -298,8 +320,14 @@ class ContaController extends Controller
             ->get();
 
         // Calcular a soma total dos valores
-        $totalValor = $contas->sum('valor');
-
+        //$totalValor = $contas->sum('valor');
+        $total = 0;
+        foreach ($contas as $conta) {
+            if(Auth::user()->id == $conta->cliente_id){
+                $total += $conta->valor;
+            }
+            $totalValor = $total;
+        }
         // Criar uma instância do PhpWord
         $phpWord = new PhpWord();
 
@@ -325,7 +353,7 @@ class ContaController extends Controller
 
         // Ler os registros recuperados do banco de dados
         foreach ($contas as $conta) {
-
+            if(Auth::user()->id == $conta->cliente_id){
             // Adicionar a linha da tabela
             $table->addRow();
             $table->addCell(2000, $borderStyle)->addText($conta->id);
@@ -333,6 +361,7 @@ class ContaController extends Controller
             $table->addCell(2000, $borderStyle)->addText(Carbon::parse($conta->vencimento)->format('d/m/Y'));
             $table->addCell(2000, $borderStyle)->addText($conta->situacaoConta->nome);
             $table->addCell(2000, $borderStyle)->addText(number_format($conta->valor, 2, ',', '.'));
+            }
         }
 
         // Adicionar o total na tabela
