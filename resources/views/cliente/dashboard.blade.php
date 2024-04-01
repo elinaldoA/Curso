@@ -37,7 +37,7 @@
                                         @endif
                                     @endif
                                 @endforeach
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
                                     {{ 'R$ ' . number_format($total, 2, ',', '.') }}
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                                     $ano = date('Y');
                                 @endphp
                                 @foreach ($contas as $conta)
-                                    @if (date('Y', strtotime($conta->created_at)) === $ano)
+                                    @if (date('Y', strtotime($conta->created_at)) == $ano)
                                     @if(Auth::user()->id == $conta->cliente_id)
                                         <?php $total += $conta->valor; ?>
                                     @endif
@@ -109,8 +109,70 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">{{ __('Vencidas') }}
+                                @php
+                                    $total = 0;
+                                    $mes = date('m');
+                                @endphp
+                                @foreach ($contas as $conta)
+                                    @if (date('m', strtotime($conta->vencimento)) < $mes)
+                                        @if(Auth::user()->id == $conta->cliente_id)
+                                            @if($conta->situacao_conta_id !== 1)
+                                                <?php $total += $conta->valor; ?>
+                                            @endif
+                                        @endif
+                                    @endif
+                                @endforeach
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    {{ 'R$ ' . number_format($total, 2, ',', '.') }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-coins fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">{{ __('Lançamentos Futuros') }}
+                                @php
+                                    $total = 0;
+                                    $mes = date('m');
+                                @endphp
+                                @foreach ($contas as $conta)
+                                    @if (date('m', strtotime($conta->vencimento)) > $mes)
+                                        @if(Auth::user()->id == $conta->cliente_id)
+                                            @if($conta->situacao_conta_id !== 1)
+                                                <?php $total += $conta->valor; ?>
+                                            @endif
+                                        @endif
+                                    @endif
+                                @endforeach
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    {{ 'R$ ' . number_format($total, 2, ',', '.') }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-coins fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Situação da conta -->
-        <div class="col-xl-4 col-md-6 mb-4">
+        <div class="col-xl-2 col-md-6 mb-4">
             <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -145,7 +207,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-4 col-md-6 mb-4">
+        <div class="col-xl-2 col-md-6 mb-4">
             <div class="card border-left-danger shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -163,7 +225,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-4 col-md-6 mb-4">
+        <div class="col-xl-2 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -193,7 +255,7 @@
             $saude = 0;
         @endphp
         @foreach ($contas as $conta)
-        
+
         @if(Auth::user()->id == $conta->cliente_id)
             @if ($conta->categoria_id == 1)
                 <script>
