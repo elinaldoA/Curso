@@ -45,4 +45,17 @@ class Cliente extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    /**
+     * Get the user's full name.
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        if (is_null($this->last_name)) {
+            return "{$this->name}";
+        }
+
+        return "{$this->name} {$this->last_name}";
+    }
 }

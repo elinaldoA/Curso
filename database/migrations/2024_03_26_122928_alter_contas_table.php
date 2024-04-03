@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::table('contas', function (Blueprint $table) {
             $table->foreignId('categoria_id')->default(1)->after('situacao_conta_id')->constrained('categorias');
-            $table->foreignId('user_id')->after('situacao_conta_id')->constrained('users');
-            $table->foreignId('cliente_id')->after('user_id')->constrained('clientes');
+            $table->foreignId('user_id')->nullable()->after('situacao_conta_id')->constrained('users');
+            $table->foreignId('cliente_id')->nullable()->after('user_id')->constrained('clientes');
         });
     }
 

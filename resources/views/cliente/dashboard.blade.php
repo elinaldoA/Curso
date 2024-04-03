@@ -120,7 +120,7 @@
                                     $mes = date('m');
                                 @endphp
                                 @foreach ($contas as $conta)
-                                    @if (date('m', strtotime($conta->vencimento)) < $mes)
+                                    @if (date('m', strtotime($conta->vencimento)) !== $mes)
                                         @if(Auth::user()->id == $conta->cliente_id)
                                             @if($conta->situacao_conta_id !== 1)
                                                 <?php $total += $conta->valor; ?>
