@@ -56,7 +56,7 @@
 								<li><a href="#">Sobre</a></li>
 								<li><a href="#">Contato</a></li>
                                 <li class="has-children">
-									<a href="#">Login</a>
+									<a href="#">Acesso restrito</a>
 									<ul class="dropdown">
 										<li><a href="{{route('login')}}">Administrador</a></li>
 										<li><a href="{{route('cliente.login')}}">Cliente</a></li>
@@ -64,7 +64,7 @@
 								</li>
 							</ul>
 						</div>
-						{{-- <div class="col-2 text-end">
+						<div class="col-2 text-end">
 							<a href="#" class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block d-lg-none light">
 								<span></span>
 							</a>
@@ -72,7 +72,7 @@
 								<span class="icon-phone"></span>
 								<span>(27) 9999-9999</span>
 							</a>
-						</div> --}}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -243,7 +243,7 @@
 				<div class="service text-center">
 					<span class="bi-cash-coin"></span>
 					<div>
-						<h3>Faster payments</h3>
+						<h3>Finaças</h3>
 						<p class="mb-4">-</p>
 						<p><a href="#" class="btn btn-outline-primary py-2 px-3">Read more</a></p>
 					</div>
@@ -252,9 +252,9 @@
 			</div>
 			<div class="col-12 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
 				<div class="service text-center">
-					<span class="bi-chat-text"></span>
+					<span class="bi-pie-chart"></span>
 					<div>
-						<h3>Grow your business</h3>
+						<h3>Por categoria</h3>
 						<p class="mb-4">-</p>
 						<p><a href="#" class="btn btn-outline-primary py-2 px-3">Read more</a></p>
 					</div>
@@ -262,9 +262,9 @@
 			</div>
 			<div class="col-12 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
 				<div class="service text-center">
-					<span class="bi-fingerprint"></span>
+					<span class="bi-clipboard"></span>
 					<div>
-						<h3>Investments</h3>
+						<h3>Por situação</h3>
 						<p class="mb-4">-</p>
 						<p><a href="#" class="btn btn-outline-primary py-2 px-3">Read more</a></p>
 					</div>
@@ -274,9 +274,9 @@
 			<div class="col-12 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
 
 				<div class="service text-center">
-					<span class="bi-gear"></span>
+					<span class="bi-calendar2-date"></span>
 					<div>
-						<h3>Payment & Cards</h3>
+						<h3>Diário</h3>
 						<p class="mb-4">-</p>
 						<p><a href="#" class="btn btn-outline-primary py-2 px-3">Read more</a></p>
 					</div>
@@ -285,9 +285,9 @@
 			</div>
 			<div class="col-12 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
 				<div class="service text-center">
-					<span class="bi-graph-up-arrow"></span>
+					<span class="bi-calendar2-month"></span>
 					<div>
-						<h3>Strategic Finance</h3>
+						<h3>Mensal</h3>
 						<p class="mb-4">-</p>
 						<p><a href="#" class="btn btn-outline-primary py-2 px-3">Read more</a></p>
 					</div>
@@ -295,9 +295,9 @@
 			</div>
 			<div class="col-12 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
 				<div class="service text-center">
-					<span class="bi-layers"></span>
+					<span class="bi-calendar"></span>
 					<div>
-						<h3>Digital Currency</h3>
+						<h3>Anual</h3>
 						<p class="mb-4">-</p>
 						<p><a href="#" class="btn btn-outline-primary py-2 px-3">Read more</a></p>
 					</div>
