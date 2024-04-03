@@ -64,6 +64,7 @@ class ClientesController extends Controller
                 'email' => $request->email,
                 'email_verified_at' => $request->email_verified_at,
                 'password' => $request->password,
+                'active' => $request->active,
             ]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
@@ -119,6 +120,7 @@ class ClientesController extends Controller
                 'email' => $request->email,
                 'email_verified_at' => $request->email_verified_at,
                 'password' => $request->password,
+                'active' => $request->active,
             ]);
 
             // Salvar log
