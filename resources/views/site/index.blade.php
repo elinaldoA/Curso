@@ -51,10 +51,10 @@
 						<div class="col-8 text-center ">
 							<ul class="js-clone-nav d-none d-lg-inline-block text-left site-menu mx-auto">
 								<li class="active"><a href="/">Home</a></li>
-								<li><a href="#">Blog</a></li>
+								{{-- <li><a href="#">Blog</a></li>
 								<li><a href="#">Serviço</a></li>
 								<li><a href="#">Sobre</a></li>
-								<li><a href="#">Contato</a></li>
+								<li><a href="#">Contato</a></li> --}}
                                 <li class="has-children">
 									<a href="#">Acesso restrito</a>
 									<ul class="dropdown">
@@ -87,7 +87,7 @@
 					<h1 class="heading text-white mb-3" data-aos="fade-up">Gerenciamento da sua vida financeira de forma inteligente.</h1>
 					<p class="text-white mb-5" data-aos="fade-up" data-aos-delay="100">Controle de gastos na palma da sua mão.</p>
 					<div class="align-items-center mb-5 mm" data-aos="fade-up" data-aos-delay="200">
-						<a href="contact.html" class="btn btn-outline-white-reverse me-4">Contato</a>
+						<a href="#" class="btn btn-outline-white-reverse me-4">Contato</a>
 					</div>
 				</div>
 				<div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
