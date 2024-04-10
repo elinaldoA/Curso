@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ConfirmPasswordController extends Controller
 {
@@ -36,7 +37,7 @@ class ConfirmPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:condomino');
+        $this->middleware('auth:cliente');
     }
 
     /**
@@ -44,7 +45,7 @@ class ConfirmPasswordController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showConfirmForm()
+    public function showConfirmForm() : View
     {
         return view('cliente.auth.passwords.confirm');
     }

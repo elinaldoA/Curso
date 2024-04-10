@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="author" content="Untree.co">
+	<meta name="author" content="Elinaldo Agostinho">
 	<link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
 
 	<meta name="description" content="" />

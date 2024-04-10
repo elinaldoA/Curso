@@ -65,7 +65,7 @@
             </a>
         </li>
 
-        <!-- Nav Item - About -->
+        <!-- Nav Item - Gastos -->
         <li class="nav-item">
             <a class="nav-link" href="{{ route('conta.cliente.index') }}">
                 <i class="fas fa-fw fa-coins"></i>

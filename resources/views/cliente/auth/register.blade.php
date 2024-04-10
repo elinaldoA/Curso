@@ -24,7 +24,7 @@
                                     </div>
                                 @endif
 
-                                <form method="POST" action="{{ route('cliente.register') }}" class="user">
+                                <form method="POST" action="{{ route('cliente.register') }}" class="cliente">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                     <div class="form-group">

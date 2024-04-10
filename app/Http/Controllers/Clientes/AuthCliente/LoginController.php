@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class LoginController extends Controller
 {
@@ -36,7 +37,7 @@ class LoginController extends Controller
      * .
      * @return \Illuminate\Http\Response
      */
-    public function showLoginForm()
+    public function showLoginForm() : View
     {
         return view('cliente.auth.login');
     }

@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', function () {
-    return view('site/index');
+    return view('welcome');
 });
 
 Auth::routes();
@@ -30,9 +30,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
 //clientes
 Route::get('/clientes/index', [ClientesController::class, 'index'])->name('cliente.index');
 Route::get('/clientes/create', [ClientesController::class, 'create'])->name('cliente.create');

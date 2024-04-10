@@ -61,7 +61,7 @@
 
                                 @if (Route::has('register'))
                                     <div class="text-center">
-                                        <a class="small" href="{{ route('register') }}">{{ __('Criar conta!') }}</a>
+                                        <a class="small" href="{{ route('cliente.register') }}">{{ __('Criar conta!') }}</a>
                                     </div>
                                 @endif
                             </div>
