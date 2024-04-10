@@ -179,8 +179,8 @@
             $emprestimo = 0;
             $condominio = 0;
             $financiamento = 0;
-            $seguro = 0;
-            $streaming = 0;
+            $veiculo = 0;
+            $moradia = 0;
             $lazer = 0;
             $saude = 0;
         @endphp
@@ -264,7 +264,7 @@
             @if ($conta->categoria_id == 5)
                 <script>
                     function update() {
-                        var element = document.getElementById("seguro");
+                        var element = document.getElementById("veiculo");
                         var width = 1;
                         var identity = setInterval(scene, 10);
 
@@ -274,7 +274,7 @@
                             } else {
                                 width++;
                                 element.style.width = width + '%';
-                                element.innerHTML = width * <?php $seguro += 5; ?> + '%';
+                                element.innerHTML = width * <?php $veiculo += 5; ?> + '%';
                             }
                         }
                     }
@@ -283,7 +283,7 @@
             @if ($conta->categoria_id == 6)
                 <script>
                     function update() {
-                        var element = document.getElementById("streaming");
+                        var element = document.getElementById("moradia");
                         var width = 1;
                         var identity = setInterval(scene, 10);
 
@@ -293,7 +293,7 @@
                             } else {
                                 width++;
                                 element.style.width = width + '%';
-                                element.innerHTML = width * <?php $streaming += 5; ?> + '%';
+                                element.innerHTML = width * <?php $moradia += 5; ?> + '%';
                             }
                         }
                     }
@@ -394,10 +394,10 @@
                             <p>{{ $categoria->descricao }}</p>
                         @endif
                     @endforeach
-                    <h4 class="small font-weight-bold"> <span class="float-right">{{ $seguro }}%</span></h4>
+                    <h4 class="small font-weight-bold"> <span class="float-right">{{ $veiculo }}%</span></h4>
                     <div class="progress mb-4">
                         <div class="progress-bar bg-info" id="emprestimo" role="progressbar"
-                            style="width: {{ $seguro }}%" aria-valuenow="20" aria-valuemin="0"
+                            style="width: {{ $veiculo }}%" aria-valuenow="20" aria-valuemin="0"
                             aria-valuemax="100">
                         </div>
                     </div>
@@ -406,10 +406,10 @@
                             <p>{{ $categoria->descricao }}</p>
                         @endif
                     @endforeach
-                    <h4 class="small font-weight-bold"> <span class="float-right">{{ $streaming }}%</span></h4>
+                    <h4 class="small font-weight-bold"> <span class="float-right">{{ $moradia }}%</span></h4>
                     <div class="progress mb-4">
                         <div class="progress-bar bg-info" id="emprestimo" role="progressbar"
-                            style="width: {{ $streaming }}%" aria-valuenow="20" aria-valuemin="0"
+                            style="width: {{ $moradia }}%" aria-valuenow="20" aria-valuemin="0"
                             aria-valuemax="100">
                         </div>
                     </div>
