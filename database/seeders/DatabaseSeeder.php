@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
             SituacaoContaSeeder::class,
             CategoriaSeeder::class,
             UserSeeder::class,
-            //ContaSeeder::class,
         ]);
     }
 }
