@@ -32,7 +32,7 @@
                 <dt class="col-sm-3">Situação</dt>
                 <dd class="col-sm-9">
                     <a href="{{ route('conta.cliente.change-situation', [ 'conta' => $conta->id])}}">
-                        {!! '<span class="badge text-bg-'. $conta->situacaoConta->cor .'">' . $conta->situacaoConta->nome . '</span>' !!}
+                        {!! '<span class="badge badge-'. $conta->situacaoConta->cor .'">' . $conta->situacaoConta->nome . '</span>' !!}
                     </a>
                 </dd>
 

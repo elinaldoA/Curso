@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\ReceitaController;
 use App\Http\Controllers\ContaController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LimiteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SendEmailContaController;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +22,7 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('site/index');
 });
 
 Auth::routes();
@@ -45,6 +47,22 @@ Route::get('clientes/gerar-pdf-cliente', [ClientesController::class, 'gerarPdf']
 Route::get('/gerar-csv-cliente', [ClientesController::class, 'gerarCsv'])->name('cliente.gerar-csv');
 Route::get('/gerar-word-cliente', [ClientesController::class, 'gerarWord'])->name('cliente.gerar-word');
 
+// RECEITAS
+Route::get('/receitas/index', [ReceitaController::class, 'index'])->name('receita.index');
+Route::get('/create-receita', [ReceitaController::class, 'create'])->name('receita.create');
+Route::post('/store-receita', [ReceitaController::class, 'store'])->name('receita.store');
+Route::get('/show-receita/{receita}', [ReceitaController::class, 'show'])->name('receita.show');
+Route::get('/edit-receita/{receita}', [ReceitaController::class, 'edit'])->name('receita.edit');
+Route::put('/update-receita/{receita}', [ReceitaController::class, 'update'])->name('receita.update');
+Route::delete('/destroy-receita/{receita}', [ReceitaController::class, 'destroy'])->name('receita.destroy');
+// LIMITES
+Route::get('/limites/index', [LimiteController::class, 'index'])->name('limite.index');
+Route::get('/create-limite', [LimiteController::class, 'create'])->name('limite.create');
+Route::post('/store-limite', [LimiteController::class, 'store'])->name('limite.store');
+Route::get('/show-limite/{limite}', [LimiteController::class, 'show'])->name('limite.show');
+Route::get('/edit-limite/{limite}', [LimiteController::class, 'edit'])->name('limite.edit');
+Route::put('/update-limite/{limite}', [LimiteController::class, 'update'])->name('limite.update');
+Route::delete('/destroy-limite/{limite}', [LimiteController::class, 'destroy'])->name('limite.destroy');
 // CONTAS
 Route::get('/contas/index', [ContaController::class, 'index'])->name('conta.index');
 Route::get('/create-conta', [ContaController::class, 'create'])->name('conta.create');

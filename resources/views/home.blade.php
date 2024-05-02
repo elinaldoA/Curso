@@ -20,6 +20,80 @@
     @endif
     <!--Gastos-->
     <div class="row">
+        <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">{{ __('Receita Mensal') }}
+                                @php
+                                    $total = 0;
+                                    $mes = date('m/Y');
+                                @endphp
+                                @foreach ($receitas as $receita)
+                                    @if (date('m/Y', strtotime($receita->created_at)) == $mes)
+                                        @if(Auth::user()->id == $receita->user_id)
+                                            <?php $total += $receita->valor; ?>
+                                        @endif
+                                    @endif
+                                @endforeach
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    {{ 'R$ ' . number_format($total, 2, ',', '.') }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-coins fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">{{ __('Limite mensal') }}
+                                @php
+                                    $totalimite = 0;
+                                    $totalconta = 0;
+                                    $totalgeral = 0;
+                                    $mes = date('m/Y');
+                                @endphp
+                                @foreach ($limites as $limite)
+                                    @if (date('m/Y', strtotime($limite->created_at)) == $mes)
+                                        @if(Auth::user()->id == $limite->user_id)
+                                            <?php $totalimite += $limite->valor; ?>
+                                        @endif
+                                    @endif
+                                @endforeach
+                                @foreach ($contas as $conta)
+                                    @if (date('m/Y', strtotime($conta->created_at)) == $mes)
+                                        @if(Auth::user()->id == $conta->user_id)
+                                            <?php $totalconta += $conta->valor; ?>
+                                        @endif
+                                    @endif
+                                @endforeach
+                                    @if($totalconta >= $totalimite)
+                                    <div class="h6 text-danger mb-0 font-weight-bold text-gray-800">
+                                    <?php $totalgeral = $totalconta -= $totalimite; ?>
+                                    Limite ultrapassado : {{ 'R$ - ' . number_format($totalgeral, 2, ',', '.') }}
+                                    @else
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <?php $totalgeral -= $totalconta - $totalimite; ?>
+                                    {{ 'R$ ' . number_format($totalimite, 2, ',', '.') }}
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-coins fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-xl-4 col-md-6 mb-4">
             <div class="card border-left-danger shadow h-100 py-2">
                 <div class="card-body">
@@ -120,7 +194,11 @@
                                     $mes = date('m');
                                 @endphp
                                 @foreach ($contas as $conta)
+<<<<<<< HEAD
+                                    @if (date('m', strtotime($conta->vencimento)) < $mes)
+=======
                                     @if (date('m', strtotime($conta->vencimento)) > $mes)
+>>>>>>> a6c7966ac5f6e918dcf9687db4ff66b899a4547a
                                         @if(Auth::user()->id == $conta->user_id)
                                             @if($conta->situacao_conta_id !== 1)
                                                 <?php $total += $conta->valor; ?>
@@ -254,9 +332,12 @@
             $lazer = 0;
             $saude = 0;
         @endphp
+        @php
+           $total = 0;
+           $mes = date('m/Y');
+        @endphp
         @foreach ($contas as $conta)
-
-        @if(Auth::user()->id == $conta->user_id)
+        @if(Auth::user()->id == $conta->user_id && date('m/Y', strtotime($conta->vencimento)) == $mes)
             @if ($conta->categoria_id == 1)
                 <script>
                     function update() {

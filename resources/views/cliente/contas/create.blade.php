@@ -37,7 +37,7 @@
 
                 <div class="col-md-4 col-sm-12">
                     <label for="categoria_id" class="form-label">Categoria da Conta</label>
-                    <select name="categoria_id" id="categoria_id" class="form-control form-select select2">
+                    <select name="categoria_id" id="categoria_id" class="form-control form-select">
                         <option value="">Selecione</option>
                         @forelse ($categorias as $categoria)
                             <option value="{{ $categoria->id }}"
@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-md-4 col-sm-12">
                     <label for="situacao_conta_id" class="form-label">Situação da Conta</label>
-                    <select name="situacao_conta_id" id="situacao_conta_id" class="form-control form-select select2">
+                    <select name="situacao_conta_id" id="situacao_conta_id" class="form-control form-select">
                         <option value="">Selecione</option>
                         @forelse ($situacoesContas as $situacaoConta)
                             <option value="{{ $situacaoConta->id }}"
@@ -70,6 +70,7 @@
                 </div>
 
                 <div class="col-12">
+                    <br/>
                     <button type="submit" class="btn btn-success btn-sm">Cadastrar</button>
                 </div>
 

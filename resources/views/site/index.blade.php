@@ -51,11 +51,11 @@
 						<div class="col-8 text-center ">
 							<ul class="js-clone-nav d-none d-lg-inline-block text-left site-menu mx-auto">
 								<li class="active"><a href="/">Home</a></li>
-								{{-- <li><a href="#">Blog</a></li>
+								<li><a href="#">Blog</a></li>
 								<li><a href="#">Serviço</a></li>
 								<li><a href="#">Sobre</a></li>
-								<li><a href="#">Contato</a></li> --}}
-                                <li class="has-children">
+								<li><a href="#">Contato</a></li>
+                                                                <li class="has-children">
 									<a href="#">Acesso restrito</a>
 									<ul class="dropdown">
 										<li><a href="{{route('login')}}">Administrador</a></li>
@@ -68,10 +68,21 @@
 							<a href="#" class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block d-lg-none light">
 								<span></span>
 							</a>
-							<a href="#" class="call-us d-flex align-items-center">
+							<!--<a href="#" class="call-us d-flex align-items-center">
 								<span class="icon-phone"></span>
 								<span>(27) 9999-9999</span>
-							</a>
+							</a>-->
+						<script type="text/javascript">
+      window.onload = function(){
+      (function(d, script) {
+      script = d.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = 'https://w.app/widget-v1/Bmd8Xo.js';
+      d.getElementsByTagName('head')[0].appendChild(script);
+      }(document));
+      };
+      </script>
 						</div>
 					</div>
 				</div>

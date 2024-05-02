@@ -120,7 +120,11 @@
                                     $mes = date('m');
                                 @endphp
                                 @foreach ($contas as $conta)
+<<<<<<< HEAD
+                                    @if (date('m', strtotime($conta->vencimento)) < $mes)
+=======
                                     @if (date('m', strtotime($conta->vencimento)) > $mes)
+>>>>>>> a6c7966ac5f6e918dcf9687db4ff66b899a4547a
                                         @if(Auth::user()->id == $conta->cliente_id)
                                             @if($conta->situacao_conta_id !== 1)
                                                 <?php $total += $conta->valor; ?>
@@ -253,11 +257,14 @@
             $streaming = 0;
             $lazer = 0;
             $saude = 0;
+            //Gasto mensal por categoria
+            $total = 0;
+            $mes = date('m/Y');
         @endphp
         @foreach ($contas as $conta)
 
         @if(Auth::user()->id == $conta->cliente_id)
-            @if ($conta->categoria_id == 1)
+            @if ($conta->categoria_id == 1 && strtotime($conta->vencimento)) == $mes)
                 <script>
                     function update() {
                         var element = document.getElementById("credito");

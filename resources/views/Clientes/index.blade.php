@@ -45,7 +45,7 @@
         {{-- Verificar se existe a sessão success e imprimir o valor --}}
         <x-alert />
 
-        <div class="card-body">
+        <div class="card-body" style="overflow-x:auto;">
             <table class="table table-hover">
                 <thead>
                     <tr>

@@ -38,7 +38,7 @@
             </div>
             <div class="sidebar-brand-text mx-3">Gestor</div>
         </a>
-
+        
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
 
@@ -70,6 +70,20 @@
             <a class="nav-link" href="{{ route('cliente.index') }}">
                 <i class="fas fa-fw fa-users"></i>
                 <span>{{ __('Clientes') }}</span>
+            </a>
+        </li>
+        <!-- Nav Item - Receitas -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('receita.index') }}">
+                <i class="fas fa-fw fa-money"></i>
+                <span>{{ __('Receitas') }}</span>
+            </a>
+        </li>
+        <!-- Nav Item - Limites -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('limite.index') }}">
+                <i class="fas fa-fw fa-wallet"></i>
+                <span>{{ __('Limites') }}</span>
             </a>
         </li>
         <!-- Nav Item - Gastos -->
