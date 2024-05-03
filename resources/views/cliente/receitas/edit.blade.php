@@ -19,7 +19,13 @@
                 @csrf
                 @method('PUT')
 
-                <div class="col-md-4 col-sm-12">
+                <div class="col-md-6 col-sm-12">
+                    <label for="nome" class="form-label">Nome</label>
+                    <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome da receita"
+                        value="{{ old('valor', isset($receita->nome)) }}">
+                </div>
+
+                <div class="col-md-6 col-sm-12">
                     <label for="valor" class="form-label">Valor</label>
                     <input type="text" name="valor" class="form-control" id="valor" placeholder="Valor da receita"
                         value="{{ old('valor', isset($receita->valor) ? number_format($receita->valor, '2', ',', '.') : '') }}">

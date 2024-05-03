@@ -53,11 +53,11 @@ class LimiteController extends Controller
             // Cadastrar no banco de dados na tabela limites os valores de todos os campos
             $limite = Limite::create([
                 'valor' => str_replace(',', '.', str_replace('.', '', $request->valor)),
-                'user_id' => $request->user_id,
+                'cliente_id' => $request->cliente_id,
             ]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
-            return redirect()->route('cliente.limite.show', ['limite' => $limite->id])->with('success', 'Limite cadastrada com sucesso');
+            return redirect()->route('limite.cliente.show', ['limite' => $limite->id])->with('success', 'Limite cadastrada com sucesso');
         } catch (Exception $e) {
 
             // Salvar log
@@ -86,14 +86,14 @@ class LimiteController extends Controller
             // Editar as informações do registro no banco de dados
             $limite->update([
                 'valor' => str_replace(',', '.', str_replace('.', '', $request->valor)),
-                'user_id' => $request->user_id,
+                'cliente_id' => $request->cliente_id,
             ]);
 
             // Salvar log
             Log::info('Limite editado com sucesso', ['id' => $limite->id, 'limite' => $limite]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
-            return redirect()->route('cliente.limite.show', ['limite' => $limite->id])->with('success', 'Limite editado com sucesso');
+            return redirect()->route('limite.cliente.show', ['limite' => $limite->id])->with('success', 'Limite editado com sucesso');
         } catch (Exception $e) {
 
             // Salvar log
@@ -112,7 +112,7 @@ class LimiteController extends Controller
         $limite->delete();
 
         // Redirecionar o usuário, enviar a mensagem de sucesso
-        return redirect()->route('cliente.limite.index')->with('success', 'Limite apagado com sucesso');
+        return redirect()->route('limite.cliente.index')->with('success', 'Limite apagado com sucesso');
     }
 
 }

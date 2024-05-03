@@ -17,7 +17,13 @@
             <form action="{{ route('receita.cliente.store') }}" method="POST" class="row g-3">
                 @csrf
 
-                <div class="col-md-4 col-sm-12">
+                <div class="col-md-6 col-sm-12">
+                    <label for="nome" class="form-label">Nome</label>
+                    <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome da receita"
+                        value="{{ old('nome') }}">
+                </div>
+
+                <div class="col-md-6 col-sm-12">
                     <label for="valor" class="form-label">Valor</label>
                     <input type="text" name="valor" class="form-control" id="valor" placeholder="Valor da receita"
                         value="{{ old('valor') }}">

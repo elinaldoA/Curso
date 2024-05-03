@@ -70,11 +70,11 @@ class ReceitaController extends Controller
             $receita = Receita::create([
                 'nome' => $request->nome,
                 'valor' => str_replace(',', '.', str_replace('.', '', $request->valor)),
-                'user_id' => $request->user_id,
+                'cliente_id' => $request->cliente_id,
             ]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
-            return redirect()->route('cliente.receita.show', ['receita' => $receita->id])->with('success', 'Receita cadastrada com sucesso');
+            return redirect()->route('receita.cliente.show', ['receita' => $receita->id])->with('success', 'Receita cadastrada com sucesso');
         } catch (Exception $e) {
 
             // Salvar log
@@ -104,14 +104,14 @@ class ReceitaController extends Controller
             $receita->update([
                 'nome' => $request->nome,
                 'valor' => str_replace(',', '.', str_replace('.', '', $request->valor)),
-                'user_id' => $request->user_id,
+                'cliente_id' => $request->cliente_id,
             ]);
 
             // Salvar log
             Log::info('Receita editada com sucesso', ['id' => $receita->id, 'receita' => $receita]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
-            return redirect()->route('cliente.receita.show', ['receita' => $receita->id])->with('success', 'Receita editada com sucesso');
+            return redirect()->route('receita.cliente.show', ['receita' => $receita->id])->with('success', 'Receita editada com sucesso');
         } catch (Exception $e) {
 
             // Salvar log
@@ -130,6 +130,6 @@ class ReceitaController extends Controller
         $receita->delete();
 
         // Redirecionar o usuário, enviar a mensagem de sucesso
-        return redirect()->route('cliente.receita.index')->with('success', 'Receita apagada com sucesso');
+        return redirect()->route('receita.cliente.index')->with('success', 'Receita apagada com sucesso');
     }
 }

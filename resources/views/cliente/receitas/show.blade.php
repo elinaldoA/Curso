@@ -17,6 +17,9 @@
 
             <dl class="row">
 
+                <dt class="col-sm-3">Nome</dt>
+                <dd class="col-sm-9">{{ $receita->nome }}</dd>
+
                 <dt class="col-sm-3">Valor</dt>
                 <dd class="col-sm-9">{{ 'R$ ' . number_format($receita->valor, 2, ',', '.') }}</dd>
 

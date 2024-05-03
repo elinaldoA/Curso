@@ -18,6 +18,7 @@
         <table class="table table-hover table-sm">
             <thead>
                 <tr>
+                    <th scope="col">Nome</th>
                     <th scope="col">Valor</th>
                     <th scope="col">Criado</th>
                     <th scope="col">Situação</th>
@@ -28,6 +29,7 @@
                 @forelse($receitas as $receita)
                     @if(Auth::user()->id == $receita->cliente_id)
                     <tr>
+                        <td>{{ $receita->nome }}</td>
                         <td>{{ 'R$ ' . number_format($receita->valor, 2, ',', '.') }}</td>
                         <td>{{ \Carbon\Carbon::parse($receita->created_at)->tz('America/Sao_Paulo')->format('d/m/Y') }}
                         </td>

@@ -77,6 +77,10 @@
                                     <div class="text-xs text-danger mb-0 font-weight-bold text-gray-800">
                                     <?php $totalgeral = $totalconta -= $totalimite; ?>
                                     Ultrapassou : {{ 'R$ - ' . number_format($totalgeral, 2, ',', '.') }}
+                                    @elseif($totalconta < $totalimite)
+                                    <div class="text-xs text-info mb-0 font-weight-bold text-gray-800">
+                                    <?php $totalgeral -= $totalconta - $totalimite; ?>
+                                    {{ 'R$' . number_format($totalgeral, 2, ',', '.') }}
                                     @else
                                     <div class="text-xs text-info mb-0 font-weight-bold text-gray-800">
                                     <?php $totalgeral -= $totalconta - $totalimite; ?>

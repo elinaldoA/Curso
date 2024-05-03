@@ -27,7 +27,6 @@
             <tbody>
                 @forelse($limites as $limite)
                 @if(Auth::user()->id == $limite->cliente_id)
-                @if($limite->situacao_limite_id == 2)
                 <tr>
                     <td>{{ 'R$ ' . number_format($limite->valor, 2, ',', '.') }}</td>
                     <td>{{ \Carbon\Carbon::parse($limite->created_at)->tz('America/Sao_Paulo')->format('d/m/Y') }}
@@ -47,14 +46,11 @@
                     </td>
                 </tr>
                 @endif
-                @endif
                 @empty
                 <h5><span style="color: #f00;">Nenhuma limite encontrada!</span></h5>
                 @endforelse
             </tbody>
         </table>
-
-        {{ $limites->onEachSide(0)->links() }}
     </div>
 </div>
 @endsection

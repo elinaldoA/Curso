@@ -5,8 +5,8 @@
         <div class="card-header d-flex justify-content-between">
             <span>Editar</span>
             <span>
-                <a href="{{ route('receita.index') }}" class="btn btn-info btn-sm ">Listar</a>
-                <a href="{{ route('receita.show', ['receita' => $receita->id]) }}" class="btn btn-primary btn-sm">Visualizar</a>
+                <a href="{{ route('receita.cliente.index') }}" class="btn btn-info btn-sm ">Listar</a>
+                <a href="{{ route('receita.cliente.show', ['receita' => $receita->id]) }}" class="btn btn-primary btn-sm">Visualizar</a>
             </span>
         </div>
 
@@ -15,7 +15,7 @@
 
         <div class="card-body">
 
-            <form action="{{ route('receita.update', ['receita' => $receita->id]) }}" method="POST" class="row g-3">
+            <form action="{{ route('receita.cliente.update', ['receita' => $receita->id]) }}" method="POST" class="row g-3">
                 @csrf
                 @method('PUT')
 
