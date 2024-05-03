@@ -62,14 +62,12 @@
                                     $mes = date('m/Y');
                                 @endphp
                                 @foreach ($limites as $limite)
-                                    @if (date('m/Y', strtotime($limite->created_at)) == $mes)
                                         @if(Auth::user()->id == $limite->user_id)
                                             <?php $totalimite += $limite->valor; ?>
                                         @endif
-                                    @endif
                                 @endforeach
                                 @foreach ($contas as $conta)
-                                    @if (date('m/Y', strtotime($conta->created_at)) == $mes)
+                                    @if (date('m/Y', strtotime($conta->vencimento)) >= $mes)
                                         @if(Auth::user()->id == $conta->user_id)
                                             <?php $totalconta += $conta->valor; ?>
                                         @endif
@@ -194,11 +192,7 @@
                                     $mes = date('m');
                                 @endphp
                                 @foreach ($contas as $conta)
-<<<<<<< HEAD
-                                    @if (date('m', strtotime($conta->vencimento)) < $mes)
-=======
-                                    @if (date('m', strtotime($conta->vencimento)) > $mes)
->>>>>>> a6c7966ac5f6e918dcf9687db4ff66b899a4547a
+                                @if (date('m', strtotime($conta->vencimento)) > $mes)
                                         @if(Auth::user()->id == $conta->user_id)
                                             @if($conta->situacao_conta_id !== 1)
                                                 <?php $total += $conta->valor; ?>

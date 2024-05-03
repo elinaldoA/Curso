@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\ClientesController;
-use App\Http\Controllers\ReceitaController;
 use App\Http\Controllers\ContaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LimiteController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReceitaController;
 use App\Http\Controllers\SendEmailContaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -104,6 +104,22 @@ Route::prefix('cliente')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Clientes\HomeController::class, 'index'])->name('dashboard');
     Route::get('/profile', [App\Http\Controllers\Clientes\ProfileController::class, 'index'])->name('profile-cliente');
     Route::put('/profile', [App\Http\Controllers\Clientes\ProfileController::class, 'update'])->name('profile-cliente.update');
+    // RECEITAS
+    Route::get('/receitas/index', [App\Http\Controllers\Clientes\ReceitaController::class, 'index'])->name('receita.cliente.index');
+    Route::get('/create-receita', [App\Http\Controllers\Clientes\ReceitaController::class, 'create'])->name('receita.cliente.create');
+    Route::post('/store-receita', [App\Http\Controllers\Clientes\ReceitaController::class, 'store'])->name('receita.cliente.store');
+    Route::get('/show-receita/{receita}', [App\Http\Controllers\Clientes\ReceitaController::class, 'show'])->name('receita.cliente.show');
+    Route::get('/edit-receita/{receita}', [App\Http\Controllers\Clientes\ReceitaController::class, 'edit'])->name('receita.cliente.edit');
+    Route::put('/update-receita/{receita}', [App\Http\Controllers\Clientes\ReceitaController::class, 'update'])->name('receita.cliente.update');
+    Route::delete('/destroy-receita/{receita}', [App\Http\Controllers\Clientes\ReceitaController::class, 'destroy'])->name('receita.cliente.destroy');
+    // LIMITES
+    Route::get('/limites/index', [App\Http\Controllers\Clientes\LimiteController::class, 'index'])->name('limite.cliente.index');
+    Route::get('/create-limite', [App\Http\Controllers\Clientes\LimiteController::class, 'create'])->name('limite.cliente.create');
+    Route::post('/store-limite', [App\Http\Controllers\Clientes\LimiteController::class, 'store'])->name('limite.cliente.store');
+    Route::get('/show-limite/{limite}', [App\Http\Controllers\Clientes\LimiteController::class, 'show'])->name('limite.cliente.show');
+    Route::get('/edit-limite/{limite}', [App\Http\Controllers\Clientes\LimiteController::class, 'edit'])->name('limite.cliente.edit');
+    Route::put('/update-limite/{limite}', [App\Http\Controllers\Clientes\LimiteController::class, 'update'])->name('limite.cliente.update');
+    Route::delete('/destroy-limite/{limite}', [App\Http\Controllers\Clientes\LimiteController::class, 'destroy'])->name('limite.cliente.destroy');
     // CONTAS
     Route::get('/contas/index', [App\Http\Controllers\Clientes\ContaController::class, 'index'])->name('conta.cliente.index');
     Route::get('/create-conta', [App\Http\Controllers\Clientes\ContaController::class, 'create'])->name('conta.cliente.create');

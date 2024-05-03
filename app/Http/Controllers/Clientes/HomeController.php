@@ -26,9 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $receitas = DB::table('receitas')->get();
+        $limites = DB::table('limites')->get();
         $contas = DB::table('contas')->get();
         $categorias = DB::table('categorias')->get();
 
-        return view('cliente/dashboard', compact('contas','categorias'));
+        return view('cliente/dashboard', compact('contas','receitas','limites','categorias'));
     }
 }

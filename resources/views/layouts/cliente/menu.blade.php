@@ -65,6 +65,20 @@
             </a>
         </li>
 
+        <!-- Nav Item - Receitas -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('receita.cliente.index') }}">
+                <i class="fas fa-fw fa-coins"></i>
+                <span>{{ __('Receitas') }}</span>
+            </a>
+        </li>
+        <!-- Nav Item - Limites -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('limite.cliente.index') }}">
+                <i class="fas fa-fw fa-coins"></i>
+                <span>{{ __('Limites') }}</span>
+            </a>
+        </li>
         <!-- Nav Item - Gastos -->
         <li class="nav-item">
             <a class="nav-link" href="{{ route('conta.cliente.index') }}">
